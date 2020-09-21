@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio Rick and Morti SFC</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{titulo}}</h1>
+        <!--mi-componente></mi-componente>
+        <button-counter></button-counter-->
+        <image-component></image-component>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        //Component
+        Vue.component('mi-componente', {
+            template: "<div><h2> Componente Hijo </h2></div>"
+        });
+
+        Vue.component("button-counter", {
+            data: function() {
+                return {
+                    count: 0,
+                }
+            },
+            template: `<button @click="count++">Haz clickeado {{count}}</button>`
+        });
+
+        Vue.component("image-component", {
+                props: {
+                    title_image: {
+                        type: String,
+                        required: true,
+                    },
+                    src_image: {
+                        type: String,
+                        required: true,
+
+                    },
+                    id: {
+                        type: Number,
+                        required: true,
+                    },
+                    alt: {
+                        type: String,
+                        default: "image_alt"
+                    }
+                },
+
+                template: `
+                 <div>
+                    <h1>{{title_image}}</h1>
+                    <button>Eliminar</button>
+                    <hr>
+                    <img :src="src_image" :alt="alt">
+                </div>`,
+            })
+            //end component
+        const app = new Vue({
+            el: "#app",
+            data: function() {
+                return {
+                    //
+                    titulo: "Saludos div padre"
+                }
+            },
+            methods: {
+                //
+            }
+        })
+    </script>
+</body>
+
+</html>
